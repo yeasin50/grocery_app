@@ -3,6 +3,7 @@ import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 import 'package:grocery_app/src/presentation/auth/auth.dart';
 import 'package:grocery_app/src/presentation/cart/cart_page.dart';
 import 'package:grocery_app/src/presentation/home/home_page.dart';
+import 'package:grocery_app/src/presentation/payment/payment_page.dart';
 import 'package:grocery_app/src/presentation/product_detail/producet_details_page.dart';
 
 import '../presentation/saved/saved_page.dart';
@@ -22,10 +23,12 @@ class AppRoute {
   static const String productDetails = "/product_details";
   static const String cart = "/cart";
 
+  static const String payment = "/payment";
+
   ///
   static GoRouter routerConfig() {
     return GoRouter(
-      initialLocation: cart,
+      initialLocation: payment,
       routes: [
         GoRoute(
           path: home,
@@ -92,6 +95,10 @@ class AppRoute {
             ),
           ],
         ),
+        GoRoute(
+          path: payment,
+          builder: (context, state) => PaymentPage(total: state.extra as double? ?? 120),
+        )
       ],
     );
   }
