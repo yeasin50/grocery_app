@@ -13,7 +13,6 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const gap = SizedBox(height: 24);
-    final textTheme = Theme.of(context).textTheme;
     return AuthBackGroundWrapper(
       title: "Create an account now",
       child: Column(

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
 
 import 'background_bubble.dart';
 
@@ -12,28 +11,28 @@ class BackgroundView extends StatelessWidget {
     required this.bubble,
   });
 
-  factory BackgroundView.single({
-    required Widget child,
-    Key? key,
-  }) {
-    final bubbles = [
-      const BackgroundBubble(
-        alignment: Alignment(-1.2, -.75),
-      ),
-    ];
-    return BackgroundView(bubble: bubbles, key: key, child: child);
-  }
-  factory BackgroundView.two({
-    required Widget child,
-    Key? key,
-  }) {
-    final bubbles = [
-      const BackgroundBubble(alignment: Alignment(1.2, -1.1)),
-      const BackgroundBubble(alignment: Alignment(-.5, .95))
-    ];
-
+  factory BackgroundView.single({required Widget child, Key? key}) {
     return BackgroundView(
-      bubble: bubbles,
+      bubble: const [BackgroundBubble(alignment: Alignment(-1.2, -.75))],
+      key: key,
+      child: child,
+    );
+  }
+
+  factory BackgroundView.two({required Widget child, Key? key}) {
+    return BackgroundView(bubble: const [
+      BackgroundBubble(alignment: Alignment(1.2, -1.1)),
+      BackgroundBubble(alignment: Alignment(-.5, .95))
+    ], key: key, child: child);
+  }
+
+  factory BackgroundView.triple({required Widget child, Key? key}) {
+    return BackgroundView(
+      bubble: const [
+        BackgroundBubble(alignment: Alignment(-1.25, -1)),
+        BackgroundBubble(alignment: Alignment(1.2, 0)),
+        BackgroundBubble(alignment: Alignment(-1.2, .95)),
+      ],
       key: key,
       child: child,
     );

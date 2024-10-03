@@ -10,6 +10,22 @@ class AppTheme {
   ];
   static ThemeData theme(TextTheme textTheme) => ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
+        chipTheme: ChipThemeData(
+          shape: const StadiumBorder(),
+          color: WidgetStateProperty.resolveWith(
+            (states) {
+              if (states.contains(WidgetState.selected)) {
+                return AppTheme.primary;
+              } else {
+                return AppTheme.background;
+              }
+            },
+          ),
+          showCheckmark: false,
+          labelStyle: const TextStyle(color: Colors.black),
+          secondaryLabelStyle: const TextStyle(color: Colors.white),
+          side: const BorderSide(color: AppTheme.primary),
+        ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             foregroundColor: const Color(0xFF454545),
@@ -27,6 +43,10 @@ class AppTheme {
           style: ElevatedButton.styleFrom(
             backgroundColor: primary,
             foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 18,
+            ),
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(

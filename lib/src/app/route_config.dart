@@ -1,5 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:grocery_app/src/presentation/auth/auth.dart';
+import 'package:grocery_app/src/presentation/home/home_page.dart';
+
+import '../presentation/saved/saved_page.dart';
 
 class AppRoute {
   static const String startPage = "/landing_page";
@@ -11,11 +14,25 @@ class AppRoute {
   static const String otp = "/landing_page/reset_password/otp";
   static const String newPassword = "/landing_page/reset_password/new_password";
 
+  static const String home = "/";
+  static const String saved = "/saved";
+
   ///
   static GoRouter routerConfig() {
     return GoRouter(
-      initialLocation: startPage,
+      initialLocation: saved,
       routes: [
+        GoRoute(
+            path: home,
+            builder: (context, state) {
+              return const HomePage();
+            },
+            routes: [
+              GoRoute(
+                path: "saved",
+                builder: (context, state) => SavedPage(),
+              )
+            ]),
         GoRoute(
           path: startPage,
           builder: (context, state) {

@@ -16,6 +16,7 @@ class _GroceryAppState extends State<GroceryApp> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.theme(textTheme),
       scrollBehavior: ScrollBehavior().copyWith(
         dragDevices: PointerDeviceKind.values.toSet(),
