@@ -8,11 +8,13 @@ class AppRoute {
   static const String signIn = "/landing_page/sign_in";
   static const String verification = "/landing_page/verification";
   static const String resetPassword = "/landing_page/reset_password";
+  static const String otp = "/landing_page/reset_password/otp";
+  static const String newPassword = "/landing_page/reset_password/new_password";
 
   ///
   static GoRouter routerConfig() {
     return GoRouter(
-      initialLocation: signIn,
+      initialLocation: startPage,
       routes: [
         GoRoute(
           path: startPage,
@@ -37,12 +39,18 @@ class AppRoute {
               builder: (context, state) => const LoginOptionSelectionPage(),
             ),
             GoRoute(
-              path: 'verification',
-              builder: (context, state) => const VerificationPage(),
-            ),
-            GoRoute(
               path: 'reset_password',
               builder: (context, state) => const ResetPasswordPage(),
+              routes: [
+                GoRoute(
+                  path: 'otp',
+                  builder: (context, state) => const OtpPage(),
+                ),
+                GoRoute(
+                  path: 'new_password',
+                  builder: (context, state) => const NewPasswordPage(),
+                ),
+              ],
             ),
           ],
         ),

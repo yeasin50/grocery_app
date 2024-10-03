@@ -4,14 +4,22 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static const primary = Color(0xFFFF3C3C);
   static const background = Color(0xFFFFFFFF);
-
+  static const bubbleColors = [
+    Color.fromRGBO(255, 60, 60, 0.5),
+    Color.fromRGBO(255, 60, 60, 0),
+  ];
   static ThemeData theme(TextTheme textTheme) => ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          scrolledUnderElevation: 0,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: const Color(0xFF454545),
+          ),
         ),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            iconTheme: IconThemeData(color: Colors.white)),
         textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
           titleLarge: textTheme.headlineLarge?.copyWith(),
         ),

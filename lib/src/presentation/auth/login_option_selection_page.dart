@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:grocery_app/src/app/route_config.dart';
 import 'package:grocery_app/src/presentation/_common/widgets/background_view.dart';
 
+import '../_common/widgets/app_button.dart';
+
 class LoginOptionSelectionPage extends StatelessWidget {
   const LoginOptionSelectionPage({super.key});
 
@@ -13,70 +15,60 @@ class LoginOptionSelectionPage extends StatelessWidget {
     return BackgroundView.two(
       child: Scaffold(
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Text(
-                      "Grocery shopping has never been this much fun ",
-                      style: textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 48),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 56,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context.push(AppRoute.signIn);
-                          },
-                          child: const Text("Login"),
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Text(
+                        "Grocery shopping has never been this much fun ",
+                        style: textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "Don't Have an account",
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 16),
-                      SizedBox(
-                        height: 56,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            context.push(AppRoute.signUp);
-                          },
-                          child: const Text("Sign Up"),
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 48),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppButton.large(
+                            onTap: () {
+                              context.push(AppRoute.signIn);
+                            },
+                            label: "Login",
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            "Don't Have an account",
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 16),
+                          AppButton.large(
+                            onTap: () {
+                              context.push(AppRoute.signUp);
+                            },
+                            label: "Sign Up",
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Expanded(
-                child: const Align(
-                  alignment: Alignment.bottomRight,
-                  child: SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: Placeholder(),
-                  ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset(
+                  "assets/images/bottom_ve.png",
+                  fit: BoxFit.fitWidth,
                 ),
-              )
+              ),
             ],
           ),
         ),

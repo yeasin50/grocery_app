@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/app/app_theme.dart';
 
 import 'background_bubble.dart';
 
@@ -15,7 +16,11 @@ class BackgroundView extends StatelessWidget {
     required Widget child,
     Key? key,
   }) {
-    final bubbles = [const BackgroundBubble(alignment: Alignment(-1.65, -.8))];
+    final bubbles = [
+      const BackgroundBubble(
+        alignment: Alignment(-1.2, -.75),
+      ),
+    ];
     return BackgroundView(bubble: bubbles, key: key, child: child);
   }
   factory BackgroundView.two({
@@ -41,7 +46,7 @@ class BackgroundView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      color: Colors.white,
       child: Stack(
         children: [
           for (final b in bubble) b,

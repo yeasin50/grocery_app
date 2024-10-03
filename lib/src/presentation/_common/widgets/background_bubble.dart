@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/app/app_theme.dart';
 
 ///  create bubble for [BackgroundView]
 ///
 class BackgroundBubble extends StatelessWidget {
   const BackgroundBubble({
     super.key,
-    this.colors = const [
-      Color.fromRGBO(255, 60, 60, 0.5),
-      Color.fromRGBO(255, 60, 60, 0),
-    ],
+    this.colors = AppTheme.bubbleColors,
     this.radius = 1,
     this.size = const Size(200, 200),
     required this.alignment,
@@ -30,7 +28,7 @@ class BackgroundBubble extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: RadialGradient(
               colors: colors,
-              stops: [0, 2],
+              stops: [0, 1],
             ),
           ),
         ),

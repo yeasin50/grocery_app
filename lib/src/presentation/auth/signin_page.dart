@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/presentation/_common/app_text_field.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grocery_app/src/app/route_config.dart';
+import 'package:grocery_app/src/presentation/_common/widgets/app_text_field.dart';
 
-import 'widgets/background_auth_wrapper.dart';
+import '../../app/app_theme.dart';
+import 'auth.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -10,63 +12,65 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const gap = SizedBox(height: 24);
+    final textTheme = Theme.of(context).textTheme;
     return AuthBackGroundWrapper(
-      child: Material(
-        color: AppTheme.background,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24),
-            topRight: Radius.circular(24),
+      title: "Welcome back!",
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          gap,
+          AppTextField(
+            hint: "Email",
+            icon: Icon(Icons.email),
           ),
-        ),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          gap,
+          AppTextField(
+            hint: "Password",
+            obscureText: true,
+            icon: Icon(Icons.lock),
+          ),
+          gap,
+          TextButton(
+            onPressed: () {
+              context.push(AppRoute.resetPassword);
+            },
+            child: const Text("Forgot password?"),
+          ),
+          gap,
+          const SingInOptionView(),
+          const SizedBox(height: 32),
+          FractionallySizedBox(
+            widthFactor: .75,
+            child: SizedBox(
+              height: 56,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text("Login"),
+              ),
+            ),
+          ),
+          gap,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              gap,
-              FractionallySizedBox(
-                widthFactor: .5,
-                child: Container(
-                  height: 4,
-                  decoration: const ShapeDecoration(
-                    shape: StadiumBorder(),
-                    color: AppTheme.primary,
+              const Text("Don’t have an account? "),
+              InkWell(
+                onTap: () {
+                  context.pushReplacement(AppRoute.signUp);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 4, right: 8, top: 8, bottom: 8),
+                  child: Text(
+                    "SignUp",
+                    style: TextStyle(color: AppTheme.primary),
                   ),
                 ),
               ),
-              gap,
-              Text(
-                "Create an account now",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              gap,
-              const AppTextField(
-                hint: "Name",
-                icon: Icon(Icons.person),
-              ),
-              gap,
-              const AppTextField(
-                hint: "Email",
-                icon: Icon(Icons.email_outlined),
-              ),
-              gap,
-              const AppTextField(
-                hint: "Password",
-                icon: Icon(Icons.visibility),
-              ),
-              gap,
-              const AppTextField(
-                hint: "Confirm Password",
-                icon: Icon(Icons.visibility),
-              ),
-              gap,
-              gap,
             ],
           ),
-        ),
+          gap,
+        ],
       ),
     );
   }
