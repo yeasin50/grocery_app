@@ -46,6 +46,9 @@ class AppButton extends StatelessWidget {
             )
           : ElevatedButton(
               onPressed: onTap,
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
               child: Text(label),
             ),
     );

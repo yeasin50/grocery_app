@@ -1,6 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 import 'package:grocery_app/src/presentation/auth/auth.dart';
+import 'package:grocery_app/src/presentation/cart/cart_page.dart';
 import 'package:grocery_app/src/presentation/home/home_page.dart';
+import 'package:grocery_app/src/presentation/product_detail/producet_details_page.dart';
 
 import '../presentation/saved/saved_page.dart';
 
@@ -16,23 +19,41 @@ class AppRoute {
 
   static const String home = "/";
   static const String saved = "/saved";
+  static const String productDetails = "/product_details";
+  static const String cart = "/cart";
 
   ///
   static GoRouter routerConfig() {
     return GoRouter(
-      initialLocation: saved,
+      initialLocation: cart,
       routes: [
         GoRoute(
-            path: home,
-            builder: (context, state) {
-              return const HomePage();
-            },
-            routes: [
-              GoRoute(
-                path: "saved",
-                builder: (context, state) => SavedPage(),
-              )
-            ]),
+          path: home,
+          builder: (context, state) {
+            return const HomePage();
+          },
+          routes: [
+            GoRoute(
+              path: "saved",
+              builder: (context, state) => const SavedPage(),
+            ),
+            GoRoute(
+              path: "product_details",
+              builder: (context, state) {
+                final item = state.extra as ItemModel? ?? ItemModel.ui;
+                return ProductDetailsPage(
+                  model: item,
+                );
+              },
+            ),
+            GoRoute(
+              path: "cart",
+              builder: (context, state) {
+                return const CartPage();
+              },
+            )
+          ],
+        ),
         GoRoute(
           path: startPage,
           builder: (context, state) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/presentation/_common/_common.dart';
 
 import '../../app/app_theme.dart';
 import '../../infrastructure/infrastructure.dart';
@@ -20,17 +21,7 @@ class SavedPage extends StatelessWidget {
           const SliverToBoxAdapter(
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Material(
-                color: AppTheme.primary,
-                shape: StadiumBorder(),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Text(
-                    "Favorite",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+              child: LabelView(label: "Favorite"),
             ),
           ),
           SliverGrid.builder(
