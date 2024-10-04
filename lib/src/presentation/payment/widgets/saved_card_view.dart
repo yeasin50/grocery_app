@@ -45,8 +45,12 @@ class UserSavedItemView extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 24),
-            Text(info.cardNo),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(info.cardNo),
+              ),
+            ),
             Icon(
               Icons.check_circle,
               color: isSelected ? AppTheme.primary : Colors.transparent,

@@ -6,6 +6,7 @@ import 'package:grocery_app/src/presentation/home/home_page.dart';
 import 'package:grocery_app/src/presentation/payment/payment_page.dart';
 import 'package:grocery_app/src/presentation/product_detail/producet_details_page.dart';
 
+import '../presentation/payment/add_payment_method_page.dart';
 import '../presentation/saved/saved_page.dart';
 
 class AppRoute {
@@ -24,11 +25,12 @@ class AppRoute {
   static const String cart = "/cart";
 
   static const String payment = "/payment";
+  static const String createPayment = "/payment/create";
 
   ///
   static GoRouter routerConfig() {
     return GoRouter(
-      initialLocation: payment,
+      initialLocation: createPayment,
       routes: [
         GoRoute(
           path: home,
@@ -98,6 +100,14 @@ class AppRoute {
         GoRoute(
           path: payment,
           builder: (context, state) => PaymentPage(total: state.extra as double? ?? 120),
+          routes: [
+            GoRoute(
+              path: "create",
+              builder: (context, state) => AddPaymentMethodPage(
+                type: state.extra as PaymentMethodEnum? ?? PaymentMethodEnum.masterCard,
+              ),
+            )
+          ],
         )
       ],
     );
