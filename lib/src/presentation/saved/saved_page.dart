@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/presentation/_common/_common.dart';
 
-import '../../app/app_theme.dart';
+import '../../app/route_config.dart';
 import '../../infrastructure/infrastructure.dart';
-import '../_common/widgets/item_card_view.dart';
+import '../_common/_common.dart';
 
 class SavedPage extends StatelessWidget {
   const SavedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 34,
-            ),
-          ),
-          const SliverToBoxAdapter(
+    return CustomScrollView(
+      slivers: [
+        const SliverPadding(
+          padding: EdgeInsets.only(bottom: 16, left: 24, right: 24),
+          sliver: SliverToBoxAdapter(
             child: Align(
               alignment: Alignment.centerLeft,
-              child: LabelView(label: "Favorite"),
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: LabelView(label: "Favorite"),
+              ),
             ),
           ),
-          SliverGrid.builder(
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.only(bottom: 16, left: 24, right: 24),
+          sliver: SliverGrid.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 16,
@@ -34,11 +35,14 @@ class SavedPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return ItemCardView(
                 model: ItemModel.ui,
+                onTap: () {
+                  context.push(AppRoute.productDetails, extra: ItemModel.ui);
+                },
               );
             },
-          )
-        ],
-      ),
+          ),
+        ),
+      ],
     );
   }
 }

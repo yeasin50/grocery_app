@@ -21,7 +21,8 @@ class DiscountCardView extends StatelessWidget {
 
     return AspectRatio(
       aspectRatio: 16 / 8,
-      child: DecoratedBox(
+      child: Container(
+        clipBehavior: Clip.none,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(12),
@@ -32,9 +33,11 @@ class DiscountCardView extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Row(
+          child: Stack(
+            clipBehavior: Clip.none,
             children: [
-              Expanded(
+              Align(
+                alignment: Alignment.centerLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -62,8 +65,14 @@ class DiscountCardView extends StatelessWidget {
                   ],
                 ),
               ),
-              const Expanded(
-                child: Placeholder(),
+              Positioned(
+                right: -20,
+                top: -32,
+                bottom: 0,
+                child: Image.asset(
+                  "assets/images/basket_full_vegetables_photoroom.png",
+                  fit: BoxFit.fitWidth,
+                ),
               )
             ],
           ),

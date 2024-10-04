@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
-import 'package:grocery_app/src/presentation/auth/auth.dart';
-import 'package:grocery_app/src/presentation/cart/cart_page.dart';
-import 'package:grocery_app/src/presentation/home/home_page.dart';
-import 'package:grocery_app/src/presentation/payment/payment_page.dart';
-import 'package:grocery_app/src/presentation/product_detail/producet_details_page.dart';
 
+import '../infrastructure/infrastructure.dart';
+import '../presentation/_common/widgets/bottom_navBar.dart';
+import '../presentation/auth/auth.dart';
+import '../presentation/cart/cart_page.dart';
+import '../presentation/home/home_page.dart';
 import '../presentation/payment/add_payment_method_page.dart';
+import '../presentation/payment/payment_page.dart';
+import '../presentation/product_detail/producet_details_page.dart';
 import '../presentation/saved/saved_page.dart';
+
+export 'package:go_router/go_router.dart';
 
 class AppRoute {
   static const String startPage = "/landing_page";
@@ -24,11 +27,12 @@ class AppRoute {
   static const String saved = "/saved";
   static const String productDetails = "/product_details";
   static const String cart = "/cart";
+  static const String search = "/search";
 
   static const String payment = "/payment";
   static const String createPayment = "/payment/create";
 
-  static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
   ///
   static GoRouter routerConfig() {
@@ -36,42 +40,49 @@ class AppRoute {
       initialLocation: home,
       routes: [
         ShellRoute(
-          navigatorKey: _rootNavigatorKey,
+          navigatorKey: rootNavigatorKey,
           builder: (context, state, child) {
-            return child;
+            return AppBottomNavbar(child: child);
           },
           routes: [
             GoRoute(
-              parentNavigatorKey: _rootNavigatorKey,
+              parentNavigatorKey: rootNavigatorKey,
               path: home,
               builder: (context, state) {
                 return const HomePage();
               },
               routes: [
                 GoRoute(
-                  parentNavigatorKey: _rootNavigatorKey,
+                  parentNavigatorKey: rootNavigatorKey,
                   path: "saved",
                   builder: (context, state) => const SavedPage(),
                 ),
                 GoRoute(
-                  path: "product_details",
-                  builder: (context, state) {
-                    final item = state.extra as ItemModel? ?? ItemModel.ui;
-                    return ProductDetailsPage(
-                      model: item,
-                    );
-                  },
-                ),
-                GoRoute(
-                  parentNavigatorKey: _rootNavigatorKey,
+                  parentNavigatorKey: rootNavigatorKey,
                   path: "cart",
                   builder: (context, state) {
                     return const CartPage();
+                  },
+                ),
+                GoRoute(
+                  parentNavigatorKey: rootNavigatorKey,
+                  path: "search",
+                  builder: (context, state) {
+                    return const Text("TODO");
                   },
                 )
               ],
             ),
           ],
+        ),
+        GoRoute(
+          path: productDetails,
+          builder: (context, state) {
+            final item = state.extra as ItemModel? ?? ItemModel.ui;
+            return ProductDetailsPage(
+              model: item,
+            );
+          },
         ),
         GoRoute(
           path: startPage,

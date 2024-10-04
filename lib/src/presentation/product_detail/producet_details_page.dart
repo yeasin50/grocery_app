@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/src/app/app_theme.dart';
+import 'package:grocery_app/src/app/grocery_app.dart';
+import 'package:grocery_app/src/app/route_config.dart';
 import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 import 'package:grocery_app/src/presentation/_common/widgets/background_view.dart';
 import 'package:grocery_app/src/presentation/_common/widgets/item_counter.dart';
@@ -43,7 +45,27 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Icons.shopping_cart_rounded,
                   color: AppTheme.primary,
                 ),
+                onTap: () {
+                  context.go(AppRoute.cart);
+                },
               )
+            ],
+          ),
+          bottomNavigationBar: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Total:\$$totalPrice",
+                style: textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              AppButton(
+                label: "Add to cart",
+                onTap: () {
+                  ///
+                },
+              ),
             ],
           ),
           body: CustomScrollView(
@@ -58,24 +80,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Center(child: ItemCounter(onChanged: (v) {})),
+                  Center(
+                    child: ItemCounter(
+                      onChanged: (v) {},
+                    ),
+                  ),
                   ProductDescription(model: widget.model),
                   const SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Total:\$$totalPrice",
-                        style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      AppButton(
-                        label: "Add to cart",
-                        onTap: () {},
-                      ),
-                    ],
-                  )
                 ],
               )
             ],
