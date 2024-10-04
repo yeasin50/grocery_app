@@ -23,13 +23,14 @@ class _AddPaymentMethodPageState extends State<AddPaymentMethodPage> {
       bubble: const [BackgroundBubble(alignment: Alignment(1.75, 0))],
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           title: const LabelView(label: "Payment Details"),
           centerTitle: true,
         ),
         body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24),
           children: [
-            ///
+            const SizedBox(height: 24),
             Row(
               children: [
                 const Radio(
@@ -40,9 +41,11 @@ class _AddPaymentMethodPageState extends State<AddPaymentMethodPage> {
                   fillColor: WidgetStatePropertyAll(AppTheme.primary),
                 ),
                 SizedBox(
-                  height: 100,
-                  width: 150,
-                  child: Placeholder(),
+                  width: 72,
+                  child: Image.asset(
+                    widget.type.image,
+                    fit: BoxFit.fitWidth,
+                  ),
                 )
               ],
             ),

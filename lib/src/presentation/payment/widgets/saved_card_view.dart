@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
-import 'package:grocery_app/src/infrastructure/models/user_payment_method.dart';
-import 'package:grocery_app/src/presentation/cart/cart_page.dart';
+import '../../../app/app_theme.dart';
+import '../../../infrastructure/infrastructure.dart';
+import '../../../infrastructure/models/user_payment_method.dart';
 
 class UserSavedItemView extends StatelessWidget {
   const UserSavedItemView({
@@ -22,38 +21,44 @@ class UserSavedItemView extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: isSelected //
               ? AppTheme.primary.withAlpha(75)
               : const Color(0xFFF2ECEC),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
+            Text(info.type.title),
+            const SizedBox(height: 8),
+            Row(
               children: [
-                Text(
-                  info.type.title,
+                SizedBox(
+                  width: 100,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        info.type.image,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 12),
-                const SizedBox(
-                  width: 120,
-                  height: 85,
-                  child: Placeholder(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(info.cardNo),
+                  ),
+                ),
+                Icon(
+                  Icons.check_circle,
+                  color: isSelected ? AppTheme.primary : Colors.transparent,
                 ),
               ],
-            ),
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text(info.cardNo),
-              ),
-            ),
-            Icon(
-              Icons.check_circle,
-              color: isSelected ? AppTheme.primary : Colors.transparent,
             )
           ],
         ),

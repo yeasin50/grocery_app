@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 import 'package:grocery_app/src/presentation/auth/auth.dart';
@@ -27,36 +28,49 @@ class AppRoute {
   static const String payment = "/payment";
   static const String createPayment = "/payment/create";
 
+  static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+
   ///
   static GoRouter routerConfig() {
     return GoRouter(
-      initialLocation: createPayment,
+      initialLocation: home,
       routes: [
-        GoRoute(
-          path: home,
-          builder: (context, state) {
-            return const HomePage();
+        ShellRoute(
+          navigatorKey: _rootNavigatorKey,
+          builder: (context, state, child) {
+            return child;
           },
           routes: [
             GoRoute(
-              path: "saved",
-              builder: (context, state) => const SavedPage(),
-            ),
-            GoRoute(
-              path: "product_details",
+              parentNavigatorKey: _rootNavigatorKey,
+              path: home,
               builder: (context, state) {
-                final item = state.extra as ItemModel? ?? ItemModel.ui;
-                return ProductDetailsPage(
-                  model: item,
-                );
+                return const HomePage();
               },
+              routes: [
+                GoRoute(
+                  parentNavigatorKey: _rootNavigatorKey,
+                  path: "saved",
+                  builder: (context, state) => const SavedPage(),
+                ),
+                GoRoute(
+                  path: "product_details",
+                  builder: (context, state) {
+                    final item = state.extra as ItemModel? ?? ItemModel.ui;
+                    return ProductDetailsPage(
+                      model: item,
+                    );
+                  },
+                ),
+                GoRoute(
+                  parentNavigatorKey: _rootNavigatorKey,
+                  path: "cart",
+                  builder: (context, state) {
+                    return const CartPage();
+                  },
+                )
+              ],
             ),
-            GoRoute(
-              path: "cart",
-              builder: (context, state) {
-                return const CartPage();
-              },
-            )
           ],
         ),
         GoRoute(

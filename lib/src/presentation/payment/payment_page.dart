@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/infrastructure/models/user_payment_method.dart';
-import 'package:grocery_app/src/presentation/_common/_common.dart';
-import 'package:grocery_app/src/presentation/_common/widgets/background_view.dart';
-import 'package:grocery_app/src/presentation/payment/widgets/payment_card_view.dart';
-import 'package:grocery_app/src/presentation/payment/widgets/saved_card_view.dart';
 
 import '../../infrastructure/infrastructure.dart';
+import '../../infrastructure/models/user_payment_method.dart';
+import '../_common/_common.dart';
+import 'widgets/add_payment_button.dart';
+import 'widgets/payment_card_view.dart';
+import 'widgets/saved_card_view.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({
@@ -44,7 +44,9 @@ class _PaymentPageState extends State<PaymentPage> {
                   AppBar(
                     title: const LabelView(label: "Payment method"),
                     centerTitle: true,
+                    iconTheme: const IconThemeData(color: Colors.black),
                   ),
+                  const SizedBox(height: 24),
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
@@ -56,12 +58,15 @@ class _PaymentPageState extends State<PaymentPage> {
                             isSelected: selectedMethod == e,
                             type: e,
                             onTap: () {
-                              ///
+                              selectedMethod = e;
+                              setState(() {});
                             },
                           ),
                         )
                         .toList(),
                   ),
+                  const SizedBox(height: 24),
+                  const AddPaymentButton(),
                   const SizedBox(height: 24),
                   for (final um in savedItems) //
                     Padding(

@@ -17,8 +17,7 @@ class PaymentCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Durations.short4,
+    return Container(
       width: 120,
       height: 150,
       decoration: BoxDecoration(
@@ -27,17 +26,28 @@ class PaymentCardView extends StatelessWidget {
             : const Color(0xFFF2ECEC),
         borderRadius: BorderRadius.circular(12),
       ),
-      padding: const EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Expanded(child: Placeholder()),
-          const SizedBox(height: 8),
-          Text(
-            type.name,
-            textAlign: TextAlign.center,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Image.asset(
+                  type.image,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                type.name,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
