@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/src/app/app_theme.dart';
+import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 
 class UserProfileHeaderView extends StatelessWidget {
-  const UserProfileHeaderView({super.key});
+  const UserProfileHeaderView({
+    super.key,
+    required this.model,
+  });
+
+  final UserModel model;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    const imagePath = "https://avatars.githubusercontent.com/u/46500228?v=4";
-
-    String name = "Yeasin";
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -18,7 +21,7 @@ class UserProfileHeaderView extends StatelessWidget {
         Row(
           children: [
             Text(
-              "Hey $name!",
+              "Hey ${model.name}!",
               style: textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -35,7 +38,7 @@ class UserProfileHeaderView extends StatelessWidget {
               ),
               clipBehavior: Clip.hardEdge,
               child: Image.network(
-                imagePath,
+                model.avatar,
                 height: 48,
                 width: 48,
               ),

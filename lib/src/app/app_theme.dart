@@ -12,6 +12,14 @@ class AppTheme {
   ];
   static ThemeData theme(TextTheme textTheme) => ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.macOS: FadeUpwardsPageTransitionsBuilder(),
+          },
+        ),
         chipTheme: ChipThemeData(
           shape: const StadiumBorder(),
           color: WidgetStateProperty.resolveWith(

@@ -35,14 +35,19 @@ class AppRoute {
   static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
   ///
-  static GoRouter routerConfig() {
+  static GoRouter routerConfig(UserModel? user) {
     return GoRouter(
-      initialLocation: home,
+      initialLocation: user != null ? home : startPage,
       routes: [
         ShellRoute(
           navigatorKey: rootNavigatorKey,
           builder: (context, state, child) {
-            return AppBottomNavbar(child: child);
+            final user = state.extra as UserModel? ?? UserModel.ui;
+
+            return AppBottomNavbar(
+              model: user,
+              child: child,
+            );
           },
           routes: [
             GoRoute(
@@ -78,7 +83,7 @@ class AppRoute {
         GoRoute(
           path: productDetails,
           builder: (context, state) {
-            final item = state.extra as ItemModel? ?? ItemModel.ui;
+            final item = state.extra as ProductModel? ?? ProductModel.ui;
             return ProductDetailsPage(
               model: item,
             );

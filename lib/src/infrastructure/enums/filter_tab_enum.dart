@@ -4,9 +4,19 @@ enum ItemCategoryType {
   vegetables,
   dairyProducts,
   ;
+
+  static ItemCategoryType fromMap(String str) {
+    return switch (str.toLowerCase()) {
+      'fruits' => ItemCategoryType.fruits,
+      'vegetable' => ItemCategoryType.vegetables,
+      'dairy_products' => ItemCategoryType.dairyProducts,
+      _ => ItemCategoryType.all,
+    };
+  }
 }
 
 extension FilterTabExt on ItemCategoryType {
+
   String get title {
     return switch (this) {
       ItemCategoryType.all => "All",

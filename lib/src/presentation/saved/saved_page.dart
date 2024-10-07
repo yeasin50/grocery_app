@@ -34,9 +34,9 @@ class SavedPage extends StatelessWidget {
             itemCount: 5,
             itemBuilder: (context, index) {
               return ItemCardView(
-                model: ItemModel.ui,
+                model: ProductModel.ui,
                 onTap: () {
-                  context.push(AppRoute.productDetails, extra: ItemModel.ui);
+                  context.push(AppRoute.productDetails, extra: ProductModel.ui);
                 },
               );
             },

@@ -10,7 +10,7 @@ class ItemCartView extends StatelessWidget {
     required this.model,
   });
 
-  final ItemModel model;
+  final ProductModel model;
 
   @override
   Widget build(BuildContext context) {

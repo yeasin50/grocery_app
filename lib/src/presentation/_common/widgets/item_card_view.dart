@@ -10,7 +10,7 @@ class ItemCardView extends StatelessWidget {
     required this.onTap,
   });
 
-  final ItemModel model;
+  final ProductModel model;
   final VoidCallback? onTap;
 
   @override

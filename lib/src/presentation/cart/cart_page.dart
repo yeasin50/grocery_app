@@ -30,7 +30,7 @@ class _CartPageState extends State<CartPage> {
           sliver: SliverList.separated(
             itemCount: 30,
             separatorBuilder: (context, index) => const SizedBox(height: 24),
-            itemBuilder: (context, index) => ItemCartView(model: ItemModel.ui),
+            itemBuilder: (context, index) => ItemCartView(model: ProductModel.ui),
           ),
         )
       ],
