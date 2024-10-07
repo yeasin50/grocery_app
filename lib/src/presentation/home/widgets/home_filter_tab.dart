@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:grocery_app/src/infrastructure/enums/filter_tab_enum.dart';
+import 'package:grocery_app/src/infrastructure/repo/app_repo.dart';
 
 class HomeFilterTabs extends StatefulWidget {
   const HomeFilterTabs({super.key});
@@ -10,17 +11,18 @@ class HomeFilterTabs extends StatefulWidget {
   State<HomeFilterTabs> createState() => _HomeFilterTabsState();
 }
 
-class _HomeFilterTabsState extends State<HomeFilterTabs> {
-  ItemCategoryType selectedTab = ItemCategoryType.all;
+class _HomeFilterTabsState extends State<HomeFilterTabs> with AutomaticKeepAliveClientMixin {
+  ProductType selectedTab = ProductType.all;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(scrollbars: false, dragDevices: PointerDeviceKind.values.toSet()),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: ItemCategoryType.values
+          children: ProductType.values
               .map(
                 (e) => Padding(
                   padding: const EdgeInsets.only(right: 8.0),
@@ -29,6 +31,7 @@ class _HomeFilterTabsState extends State<HomeFilterTabs> {
                     label: Text(e.title),
                     onSelected: (value) {
                       selectedTab = e;
+                      ShopProvider.of(context).productByType(e);
                       setState(() {});
                     },
                   ),
@@ -39,4 +42,7 @@ class _HomeFilterTabsState extends State<HomeFilterTabs> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

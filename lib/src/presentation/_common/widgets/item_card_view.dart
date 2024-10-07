@@ -30,23 +30,26 @@ class ItemCardView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(model.imageUrl),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      model.isSaved ? Icons.favorite : Icons.favorite_border_outlined,
-                      color: AppTheme.primary,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Image.network(
+                      model.imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Placeholder(),
                     ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        model.isSaved ? Icons.favorite : Icons.favorite_border_outlined,
+                        color: AppTheme.primary,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 4),

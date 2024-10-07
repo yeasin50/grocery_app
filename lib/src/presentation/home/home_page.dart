@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../../app/route_config.dart';
 import '../../infrastructure/infrastructure.dart';
@@ -17,6 +19,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ShopProvider.of(context).fetchItem(ProductParam());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
@@ -27,9 +37,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 24),
               DiscountCardView(
                 discount: 50,
-                onTap: () async {
-                  ShopProvider.of(context).localDB.getProducts(ProductParam());
-                },
+                onTap: () async {},
               ),
               const SizedBox(height: 24),
               const HomeFilterTabs(),
@@ -38,8 +46,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         StreamBuilder<ProductState>(
-            stream: ShopProvider.of(context).localDB.getProducts(const ProductParam()),
+            stream: ShopProvider.of(context).stream,
             builder: (context, snapshot) {
+              debugPrint("refetching the stream");
               if (snapshot.hasError) {
                 return SliverToBoxAdapter(
                   child: Text(snapshot.error.toString()),
@@ -61,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
-                  itemCount: pState.data.length,
+                  itemCount: pState.filterData.length,
                   itemBuilder: (context, index) {
                     return ItemCardView(
                       model: pState.data[index],

@@ -39,7 +39,7 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
     }
   }
 
-  Future<GroceryShopRepository> load() => GroceryShopRepository.load(widget.model);
+  Future<GroceryShopRepository> load() => GroceryShopRepository.create(widget.model);
   late Future<GroceryShopRepository> future = load();
 
   @override

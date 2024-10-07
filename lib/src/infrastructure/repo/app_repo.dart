@@ -1,17 +1,57 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
+import '../infrastructure.dart';
 
 class GroceryShopRepository {
   GroceryShopRepository._(this.localDB);
 
   final IProductDatabase localDB;
 
-  static Future<GroceryShopRepository> load(UserModel user) async {
-    await Future.delayed(Duration(seconds: 1));
+  late StreamController<ProductState> _productController;
+
+  Stream<ProductState> get stream => _productController.stream;
+
+  ProductState _state = ProductState.none;
+  ProductState get state => _state;
+
+  static Future<GroceryShopRepository> create(UserModel user) async {
+    await Future.delayed(const Duration(seconds: 1));
     final db = await ProductLocalDb.create(user);
-    return GroceryShopRepository._(db);
+
+    final repo = GroceryShopRepository._(db);
+
+    await repo.init();
+    return repo;
+  }
+
+  Future<void> init() async {
+    _productController = StreamController.broadcast(
+      onListen: () => _updateState(_state),
+    );
+  }
+
+  void _updateState(ProductState state) {
+    _state = state;
+    _productController.add(_state);
+  }
+
+  Future<void> fetchItem(ProductParam param) async {
+    final result = await localDB.getProducts(param);
+
+    _updateState(
+      state.copyWith(
+        data: [..._state.data, ...result.data],
+        filterData: [..._state.filterData, ...result.filterData],
+        totalItem: result.totalItem,
+      ),
+    );
+  }
+
+  void productByType(ProductType type) {
+    final filterItems = _state.data.where((e) => e.type == type).toList();
+    print("filtered items ${filterItems.length}");
+    _updateState(_state.copyWith(filterData: filterItems));
   }
 }
 

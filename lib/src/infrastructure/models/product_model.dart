@@ -21,7 +21,7 @@ class ProductModel {
 
   static ProductModel get ui => ProductModel(
         id: 0,
-        type: ItemCategoryType.fruits,
+        type: ProductType.fruits,
         name: "Orange",
         price: 6.0,
         rating: 3.5,
@@ -34,7 +34,7 @@ class ProductModel {
       );
 
   final int id;
-  final ItemCategoryType type;
+  final ProductType type;
   final String name;
   final double price;
   final double rating;
@@ -49,7 +49,7 @@ class ProductModel {
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
       id: map['id']?.toInt() ?? 0,
-      type: ItemCategoryType.fromMap(map['type']),
+      type: ProductType.fromMap(map['type']),
       name: map['name'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       rating: map['rating']?.toDouble() ?? 0.0,
@@ -65,7 +65,7 @@ class ProductModel {
 
   ProductModel copyWith({
     int? id,
-    ItemCategoryType? type,
+    ProductType? type,
     String? name,
     double? price,
     double? rating,
