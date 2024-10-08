@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:grocery_app/src/app/app_theme.dart';
 import 'package:grocery_app/src/app/route_config.dart';
+import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
 import 'package:grocery_app/src/infrastructure/infrastructure.dart';
-import 'package:grocery_app/src/infrastructure/repo/app_repo.dart';
 
 import '../../home/widgets/user_profile_header_view.dart';
 import 'background_view.dart';
@@ -53,12 +55,19 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
                 child: CircularProgressIndicator(),
               );
             }
-
+            final repo = snapshot.requireData;
             return ShopProvider(
-              repo: snapshot.requireData,
+              repo: repo,
               child: Scaffold(
                 bottomNavigationBar: BottomNavigationBar(
-                  onTap: onTap,
+                  onTap: (i) {
+                    onTap(i);
+                    scheduleMicrotask(
+                      () {
+                        repo.onTabChange(PageName.values.elementAt(i));
+                      },
+                    );
+                  },
                   currentIndex: currentIndex,
                   selectedItemColor: AppTheme.primary,
                   unselectedItemColor: AppTheme.borderColor,

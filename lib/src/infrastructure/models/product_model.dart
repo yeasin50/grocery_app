@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../enums/filter_tab_enum.dart';
+import '../enums/product_filter.dart';
 
 class ProductModel {
   const ProductModel({

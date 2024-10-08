@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/infrastructure/enums/filter_tab_enum.dart';
+import 'package:grocery_app/src/infrastructure/enums/product_filter.dart';
 import 'package:grocery_app/src/infrastructure/repo/app_repo.dart';
 
 class HomeFilterTabs extends StatefulWidget {

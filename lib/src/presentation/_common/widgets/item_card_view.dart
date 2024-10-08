@@ -42,7 +42,9 @@ class ItemCardView extends StatelessWidget {
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ShopProvider.of(context).toggleSaveProduct(model);
+                      },
                       icon: Icon(
                         model.isSaved ? Icons.favorite : Icons.favorite_border_outlined,
                         color: AppTheme.primary,

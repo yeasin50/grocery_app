@@ -1,4 +1,4 @@
-export 'enums/filter_tab_enum.dart';
+export 'enums/product_filter.dart';
 export 'enums/payment_method_enum.dart';
 export 'models/product_model.dart';
 export 'models/product_stat.dart';

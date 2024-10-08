@@ -55,43 +55,49 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             )
           ],
         ),
-        bottomNavigationBar: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Total:\$$totalPrice",
-              style: textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w600,
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Total:\$$totalPrice",
+                style: textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            AppButton(
-              label: "Add to cart",
-              onTap: () {
-                ///
-              },
-            ),
-          ],
+              AppButton(
+                label: "Add to cart",
+                onTap: () {
+                  ///
+                },
+              ),
+            ],
+          ),
         ),
         body: CustomScrollView(
           slivers: [
-            SliverList.list(
-              children: [
-                AspectRatio(
-                  aspectRatio: 16 / 12,
-                  child: Image.network(
-                    widget.model.imageUrl,
-                    fit: BoxFit.cover,
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              sliver: SliverList.list(
+                children: [
+                  AspectRatio(
+                    aspectRatio: 16 / 12,
+                    child: Image.network(
+                      widget.model.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 12),
-                Center(
-                  child: ItemCounter(
-                    onChanged: (v) {},
+                  const SizedBox(height: 12),
+                  Center(
+                    child: ItemCounter(
+                      onChanged: (v) {},
+                    ),
                   ),
-                ),
-                ProductDescription(model: widget.model),
-                const SizedBox(height: 24),
-              ],
+                  ProductDescription(model: widget.model),
+                  const SizedBox(height: 24),
+                ],
+              ),
             )
           ],
         ),

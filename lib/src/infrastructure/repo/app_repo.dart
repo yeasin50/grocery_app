@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
 import '../infrastructure.dart';
 
 class GroceryShopRepository {
@@ -52,6 +53,33 @@ class GroceryShopRepository {
     final filterItems = _state.data.where((e) => e.type == type).toList();
     print("filtered items ${filterItems.length}");
     _updateState(_state.copyWith(filterData: filterItems));
+  }
+
+  Future<void> toggleSaveProduct(ProductModel p) async {
+    final index = _state.data.indexOf(p);
+    if (index < 0) return;
+    final newItem = _state.data[index].copyWith(isSaved: !p.isSaved);
+    _state.data[index] = newItem;
+
+    _updateState(state.copyWith());
+  }
+
+  ///* on Page change
+  Future<void> onTabChange(PageName page) async {
+    if (page.isHome) {
+      _updateState(_state.copyWith(filterData: _state.data));
+    } else if (page.isSearch) {}
+    if (page.isFavorite) {
+      final savedItems = _state.data.where((e) => e.isSaved);
+      if (savedItems.isEmpty) {
+        ///call the remote db to fetch only saved items
+      }
+      _updateState(state.copyWith(filterData: savedItems.toList()));
+    } else if (page.isCart) {
+      final filterProducts = _state.data.where((e) => e.orderCounter > 0);
+      if (filterProducts.isEmpty) {}
+      _updateState(state.copyWith(filterData: filterProducts.toList()));
+    }
   }
 }
 

@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../../app/route_config.dart';
+import '../../infrastructure/enums/page_name.dart';
 import '../../infrastructure/infrastructure.dart';
 import '../_common/_common.dart';
 
-class SavedPage extends StatelessWidget {
+class SavedPage extends StatefulWidget {
   const SavedPage({super.key});
 
   @override
+  State<SavedPage> createState() => _SavedPageState();
+}
+
+class _SavedPageState extends State<SavedPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ShopProvider.of(context).onTabChange(PageName.favorite);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
-        const SliverPadding(
+        SliverPadding(
           padding: EdgeInsets.only(bottom: 16, left: 24, right: 24),
           sliver: SliverToBoxAdapter(
             child: Align(
@@ -23,25 +36,7 @@ class SavedPage extends StatelessWidget {
             ),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 16, left: 24, right: 24),
-          sliver: SliverGrid.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-            ),
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return ItemCardView(
-                model: ProductModel.ui,
-                onTap: () {
-                  context.push(AppRoute.productDetails, extra: ProductModel.ui);
-                },
-              );
-            },
-          ),
-        ),
+        ProductsStreamSliverList()
       ],
     );
   }
