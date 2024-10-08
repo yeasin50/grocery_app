@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
+import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 
-import '../../infrastructure/infrastructure.dart';
 import '../_common/_common.dart';
-import 'widgets/cart_item_view.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -13,10 +13,18 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ShopProvider.of(context, listen: false).onTabChange(PageName.cart);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
-        const SliverPadding(
+        SliverPadding(
           padding: EdgeInsets.only(bottom: 16, left: 24, right: 24),
           sliver: SliverToBoxAdapter(
             child: Align(
@@ -25,14 +33,7 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 16, left: 24, right: 24),
-          sliver: SliverList.separated(
-            itemCount: 30,
-            separatorBuilder: (context, index) => const SizedBox(height: 24),
-            itemBuilder: (context, index) => ItemCartView(model: ProductModel.ui),
-          ),
-        )
+        ProductsStreamSliverList()
       ],
       // const CartSummaryView(),
     );

@@ -61,12 +61,9 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
               child: Scaffold(
                 bottomNavigationBar: BottomNavigationBar(
                   onTap: (i) {
+                    if (i == 0) repo.onTabChange(PageName.values.elementAt(i));
+
                     onTap(i);
-                    scheduleMicrotask(
-                      () {
-                        repo.onTabChange(PageName.values.elementAt(i));
-                      },
-                    );
                   },
                   currentIndex: currentIndex,
                   selectedItemColor: AppTheme.primary,

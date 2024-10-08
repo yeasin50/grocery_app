@@ -92,13 +92,18 @@ class GroceryShopRepository {
   }
 
   Future<void> addToCart({required ProductModel p, required int counter}) async {
-    final index = _state.data.indexOf(p);
-    debugPrint("addToCart $index $counter");
-    if (index < 0) return;
-    final newItem = _state.data[index].copyWith(orderCounter: counter);
-    _state.data[index] = newItem;
+    List<ProductModel> filterData = state.filterData.toList();
+    final itemIndex = filterData.indexOf(p);
+    filterData[itemIndex] = p.copyWith(orderCounter: counter);
 
-    _updateState(state.copyWith());
+    final mainData = state.data.toList();
+    final index = mainData.indexOf(p);
+    mainData[index] = p.copyWith(orderCounter: counter);
+
+    _updateState(state.copyWith(
+      data: mainData,
+      filterData: filterData,
+    ));
   }
 }
 

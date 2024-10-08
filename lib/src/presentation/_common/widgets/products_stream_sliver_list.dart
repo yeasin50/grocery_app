@@ -12,7 +12,7 @@ class ProductsStreamSliverList extends StatelessWidget {
     return StreamBuilder<ProductState>(
       stream: ShopProvider.of(context).stream,
       builder: (context, snapshot) {
-        debugPrint("refetching the stream");
+        debugPrint("refetching the stream ${snapshot.connectionState}");
         if (snapshot.hasError) {
           return SliverToBoxAdapter(
             child: Text(snapshot.error.toString()),

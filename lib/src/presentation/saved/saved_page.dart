@@ -16,12 +16,13 @@ class _SavedPageState extends State<SavedPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ShopProvider.of(context).onTabChange(PageName.favorite);
+      ShopProvider.of(context, listen: false).onTabChange(PageName.favorite);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("rebuilding _SavedPageState ");
     return const CustomScrollView(
       slivers: [
         SliverPadding(
