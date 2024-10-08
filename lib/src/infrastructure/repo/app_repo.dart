@@ -50,18 +50,27 @@ class GroceryShopRepository {
   }
 
   void productByType(ProductType type) {
+    if (type == ProductType.all) {
+      _updateState(_state.copyWith(filterData: _state.data));
+      return;
+    }
     final filterItems = _state.data.where((e) => e.type == type).toList();
-    print("filtered items ${filterItems.length}");
-    _updateState(_state.copyWith(filterData: filterItems));
+    _updateState(state.copyWith(filterData: filterItems));
   }
 
   Future<void> toggleSaveProduct(ProductModel p) async {
-    final index = _state.data.indexOf(p);
-    if (index < 0) return;
-    final newItem = _state.data[index].copyWith(isSaved: !p.isSaved);
-    _state.data[index] = newItem;
+    List<ProductModel> filterData = state.filterData.toList();
+    final itemIndex = filterData.indexOf(p);
+    filterData[itemIndex] = p.copyWith(isSaved: !p.isSaved);
 
-    _updateState(state.copyWith());
+    final mainData = state.data.toList();
+    final index = mainData.indexOf(p);
+    mainData[index] = p.copyWith(isSaved: !p.isSaved);
+
+    _updateState(state.copyWith(
+      data: mainData,
+      filterData: filterData,
+    ));
   }
 
   ///* on Page change
@@ -80,6 +89,16 @@ class GroceryShopRepository {
       if (filterProducts.isEmpty) {}
       _updateState(state.copyWith(filterData: filterProducts.toList()));
     }
+  }
+
+  Future<void> addToCart({required ProductModel p, required int counter}) async {
+    final index = _state.data.indexOf(p);
+    debugPrint("addToCart $index $counter");
+    if (index < 0) return;
+    final newItem = _state.data[index].copyWith(orderCounter: counter);
+    _state.data[index] = newItem;
+
+    _updateState(state.copyWith());
   }
 }
 

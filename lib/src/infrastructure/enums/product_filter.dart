@@ -8,7 +8,7 @@ enum ProductType {
   static ProductType fromMap(String str) {
     return switch (str.toLowerCase()) {
       'fruits' => ProductType.fruits,
-      'vegetable' => ProductType.vegetables,
+      'vegetables' => ProductType.vegetables,
       'dairy_products' => ProductType.dairyProducts,
       _ => ProductType.all,
     };
@@ -19,9 +19,9 @@ extension FilterTabExt on ProductType {
   String get title {
     return switch (this) {
       ProductType.all => "All",
-      ProductType.fruits => "Fruits",
-      ProductType.vegetables => "Vegetables",
-      ProductType.dairyProducts => "DairyProducts",
+      ProductType.fruits => "Fruit",
+      ProductType.vegetables => "Vegetable",
+      ProductType.dairyProducts => "DairyProduct",
     };
   }
 

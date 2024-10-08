@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 import '../enums/product_filter.dart';
 
-class ProductModel {
+class ProductModel extends Equatable {
   const ProductModel({
     required this.id,
     required this.type,
@@ -92,4 +94,8 @@ class ProductModel {
       unit: unit ?? this.unit,
     );
   }
+
+  @override
+  List<Object?> get props =>
+      [id, type, name, price, rating, imageUrl, isSaved, reviewCounter, description, deliveryTime, orderCounter, unit];
 }

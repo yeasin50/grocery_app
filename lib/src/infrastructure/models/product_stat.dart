@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 
 import '../infrastructure.dart';
 
@@ -17,14 +18,14 @@ class ProductParam {
   final bool isMyCart;
 }
 
-class ProductState {
-  ProductState({
+class ProductState extends Equatable {
+  const ProductState({
     required this.data,
     required this.totalItem,
     required this.filterData,
   });
 
-  static ProductState none = ProductState(data: [], totalItem: 0, filterData: []);
+  static const ProductState none = ProductState(data: [], totalItem: 0, filterData: []);
 
   final List<ProductModel> data;
   final List<ProductModel> filterData;
@@ -41,4 +42,7 @@ class ProductState {
       totalItem: totalItem ?? this.totalItem,
     );
   }
+
+  @override
+  List<Object?> get props => [data, filterData, totalItem];
 }
