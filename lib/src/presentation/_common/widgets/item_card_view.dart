@@ -32,13 +32,13 @@ class ItemCardView extends StatelessWidget {
             Expanded(
               child: Stack(
                 children: [
-                  Positioned.fill(
-                    child: Image.network(
-                      model.imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Placeholder(),
-                    ),
-                  ),
+                  // Positioned.fill(
+                  //   child: Image.network(
+                  //     model.imageUrl,
+                  //     fit: BoxFit.cover,
+                  //     errorBuilder: (context, error, stackTrace) => Placeholder(),
+                  //   ),
+                  // ),
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
@@ -94,7 +94,12 @@ class ItemCardView extends StatelessWidget {
                   color: AppTheme.primary,
                   child: InkWell(
                     customBorder: const CircleBorder(),
-                    onTap: () {},
+                    onTap: () {
+                      ShopProvider.of(context).addToCart(
+                        p: model,
+                        counter: model.orderCounter + 1,
+                      );
+                    },
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Icon(

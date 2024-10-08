@@ -91,6 +91,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   const SizedBox(height: 12),
                   Center(
                     child: ItemCounter(
+                      initialValue: widget.model.orderCounter,
                       onChanged: (v) {},
                     ),
                   ),
