@@ -12,7 +12,7 @@ class CartStreamSliverList extends StatelessWidget {
     return StreamBuilder<ProductState>(
       stream: ShopProvider.of(context).stream,
       builder: (context, snapshot) {
-        debugPrint("refetching the stream ${snapshot.connectionState}");
+        debugPrint("refetching the stream  CartStreamSliverList ${snapshot.connectionState}");
         if (snapshot.hasError) {
           return SliverToBoxAdapter(
             child: Text(snapshot.error.toString()),
@@ -35,13 +35,16 @@ class CartStreamSliverList extends StatelessWidget {
         return SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           sliver: SliverList.builder(
-             
             itemCount: pState.filterData.length,
             itemBuilder: (context, index) {
               return ItemCartView(
                 model: pState.filterData[index],
-                onTap: () {
-                  context.push(AppRoute.productDetails, extra: pState.filterData[index]);
+                onTap: () async {
+                  final repo = ShopProvider.of(context);
+                  await context.push(AppRoute.productDetails, extra: {
+                    "product": pState.filterData[index],
+                    "repo": repo,
+                  });
                 },
               );
             },

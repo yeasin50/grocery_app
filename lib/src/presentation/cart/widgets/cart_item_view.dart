@@ -16,6 +16,7 @@ class ItemCartView extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return InkWell(
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -31,6 +32,7 @@ class ItemCartView extends StatelessWidget {
                 child: Image.network(
                   model.imageUrl,
                   fit: BoxFit.fitWidth,
+                  errorBuilder: (context, error, stackTrace) => const Placeholder(),
                 ),
               ),
             ),

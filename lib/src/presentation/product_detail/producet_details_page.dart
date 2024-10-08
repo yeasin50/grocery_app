@@ -21,10 +21,15 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  double price = 20;
   int itemCount = 1;
 
-  String get totalPrice => (price * itemCount).toStringAsFixed(1);
+  @override
+  void initState() {
+    super.initState();
+    itemCount = widget.model.orderCounter;
+  }
+
+  String get totalPrice => (widget.model.price * itemCount).toStringAsFixed(1);
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +91,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     child: Image.network(
                       widget.model.imageUrl,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => const Placeholder(),
                     ),
                   ),
                   const SizedBox(height: 12),
                   Center(
                     child: ItemCounter(
-                      initialValue: widget.model.orderCounter,
-                      onChanged: (v) {},
+                      initialValue: itemCount,
+                      onChanged: (v) {
+                        ShopProvider.of(context).addToCart(p: widget.model, counter: v);
+                        itemCount = v;
+                        setState(() {});
+                      },
                     ),
                   ),
                   ProductDescription(model: widget.model),

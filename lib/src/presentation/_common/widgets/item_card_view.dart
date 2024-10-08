@@ -80,14 +80,24 @@ class ItemCardView extends StatelessWidget {
             ),
             Row(
               children: [
-                Text(
-                  "\$${model.price.toStringAsFixed(1)}",
+                Text.rich(
+                  TextSpan(
+                    text: "\$${model.price.toStringAsFixed(1)}",
+                    children: [
+                      TextSpan(
+                        text: " per kg", //model.unit
+                        style: textTheme.bodySmall?.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      )
+                    ],
+                  ),
                   style: textTheme.bodyLarge?.copyWith(
                     color: AppTheme.primary,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const Text(" per kg"),
                 const Spacer(),
                 Material(
                   shape: const CircleBorder(),

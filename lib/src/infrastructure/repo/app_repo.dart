@@ -93,11 +93,20 @@ class GroceryShopRepository {
 
   Future<void> addToCart({required ProductModel p, required int counter}) async {
     List<ProductModel> filterData = state.filterData.toList();
-    final itemIndex = filterData.indexOf(p);
+    final itemIndex = filterData.indexWhere((e) => e.id == p.id);
+    if (itemIndex < 0) {
+      debugPrint("cant go out of range  filterData ${p.id}");
+      return;
+    }
     filterData[itemIndex] = p.copyWith(orderCounter: counter);
 
     final mainData = state.data.toList();
-    final index = mainData.indexOf(p);
+    final index = mainData.indexWhere((e) => e.id == p.id);
+
+    if (itemIndex < 0) {
+      debugPrint("cant go out of range mainData ${p.id}");
+      return;
+    }
     mainData[index] = p.copyWith(orderCounter: counter);
 
     _updateState(state.copyWith(

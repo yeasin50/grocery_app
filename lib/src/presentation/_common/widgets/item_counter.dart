@@ -18,6 +18,14 @@ class _ItemCounterState extends State<ItemCounter> {
   late int value = widget.initialValue;
 
   @override
+  void didUpdateWidget(covariant ItemCounter oldWidget) {
+    if (widget.initialValue != value) {
+      value = widget.initialValue;
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.bodyLarge;
     return Row(

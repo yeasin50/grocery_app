@@ -83,9 +83,11 @@ class AppRoute {
         GoRoute(
           path: productDetails,
           builder: (context, state) {
-            final item = state.extra as ProductModel? ?? ProductModel.ui;
-            return ProductDetailsPage(
-              model: item,
+            final item = (state.extra as Map?)?["product"] ?? ProductModel.ui;
+            final repo = (state.extra as Map)["repo"];
+            return ShopProvider(
+              repo: repo,
+              child: ProductDetailsPage(model: item),
             );
           },
         ),

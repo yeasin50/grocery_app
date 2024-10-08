@@ -45,7 +45,12 @@ class ProductsStreamSliverList extends StatelessWidget {
               return ItemCardView(
                 model: pState.filterData[index],
                 onTap: () {
-                  context.push(AppRoute.productDetails, extra: pState.filterData[index]);
+                  final repo = ShopProvider.of(context);
+
+                  context.push(AppRoute.productDetails, extra: {
+                    "product": pState.filterData[index],
+                    "repo": repo,
+                  });
                 },
               );
             },
