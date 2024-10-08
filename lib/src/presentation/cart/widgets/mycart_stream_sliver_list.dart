@@ -28,7 +28,7 @@ class CartStreamSliverList extends StatelessWidget {
         final pState = snapshot.data ?? ProductState.none;
 
         if (pState.filterData.isEmpty) {
-          return const SliverFillRemaining(
+          return const SliverToBoxAdapter(
             child: Center(child: Text("No product found")),
           );
         }

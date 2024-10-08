@@ -107,7 +107,7 @@ class ItemCardView extends StatelessWidget {
                     onTap: () {
                       ShopProvider.of(context).addToCart(
                         p: model,
-                        counter: model.orderCounter + 1,
+                        counter: 1,
                       );
                     },
                     child: const Padding(

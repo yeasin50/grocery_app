@@ -16,6 +16,20 @@ class GroceryShopRepository {
   ProductState _state = ProductState.none;
   ProductState get state => _state;
 
+  Stream<double> get totalPrice {
+    return _productController.stream.map<double>(
+      (event) {
+        final cartItems = state.filterData.where((e) => e.orderCounter > 0);
+        final total = cartItems.fold(
+          0.0,
+          (previousValue, e) => previousValue + (e.orderCounter * e.price),
+        );
+        print("total ${total}");
+        return total;
+      },
+    );
+  }
+
   static Future<GroceryShopRepository> create(UserModel user) async {
     await Future.delayed(const Duration(seconds: 1));
     final db = await ProductLocalDb.create(user);

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:grocery_app/src/app/app_theme.dart';
 import 'package:grocery_app/src/app/route_config.dart';
@@ -69,8 +67,8 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
                   selectedItemColor: AppTheme.primary,
                   unselectedItemColor: AppTheme.borderColor,
                   type: BottomNavigationBarType.fixed,
-                  selectedLabelStyle: TextStyle(color: AppTheme.primary),
-                  unselectedLabelStyle: TextStyle(color: AppTheme.background),
+                  selectedLabelStyle: const TextStyle(color: AppTheme.primary),
+                  unselectedLabelStyle: const TextStyle(color: AppTheme.background),
                   items: const [
                     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
                     BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
@@ -82,10 +80,12 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
                   padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: UserProfileHeaderView(model: widget.model),
-                      ),
+                      if (currentIndex == 0) ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: UserProfileHeaderView(model: widget.model),
+                        ),
+                      ],
                       const SizedBox(height: 24),
                       Expanded(
                         child: widget.child,

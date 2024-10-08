@@ -61,7 +61,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           ],
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -74,7 +74,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               AppButton(
                 label: "Add to cart",
                 onTap: () {
-                  ///
+                  ShopProvider.of(context).addToCart(p: widget.model, counter: itemCount);
+                  context.pop();
                 },
               ),
             ],
@@ -99,7 +100,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     child: ItemCounter(
                       initialValue: itemCount,
                       onChanged: (v) {
-                        ShopProvider.of(context).addToCart(p: widget.model, counter: v);
                         itemCount = v;
                         setState(() {});
                       },

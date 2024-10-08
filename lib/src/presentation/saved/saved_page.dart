@@ -29,7 +29,7 @@ class _SavedPageState extends State<SavedPage> {
           padding: EdgeInsets.only(bottom: 16, left: 24, right: 24),
           sliver: SliverToBoxAdapter(
             child: Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: LabelView(label: "Favorite"),

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/presentation/_common/widgets/app_button.dart';
+
+import '../../_common/widgets/app_button.dart';
 
 class CartSummaryView extends StatelessWidget {
-  const CartSummaryView({super.key});
+  const CartSummaryView({
+    super.key,
+    required this.deliveryPrice,
+    required this.totalPrice,
+  });
 
+  final double totalPrice;
+  final double deliveryPrice;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -32,11 +39,11 @@ class CartSummaryView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildPriceRow("Total price", 122),
+          _buildPriceRow("Total price", totalPrice),
           const SizedBox(height: 8),
-          _buildPriceRow("Delivery fee", 2),
+          _buildPriceRow("Delivery fee", deliveryPrice),
           const SizedBox(height: 8),
-          _buildPriceRow("Total", 124),
+          _buildPriceRow("Total", totalPrice+deliveryPrice),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
