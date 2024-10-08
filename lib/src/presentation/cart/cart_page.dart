@@ -3,6 +3,7 @@ import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
 import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 
 import '../_common/_common.dart';
+import 'widgets/mycart_stream_sliver_list.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -33,7 +34,7 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
         ),
-        ProductsStreamSliverList()
+        CartStreamSliverList()
       ],
       // const CartSummaryView(),
     );
