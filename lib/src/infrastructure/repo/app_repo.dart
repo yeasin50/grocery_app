@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
+
+import '../enums/page_name.dart';
 import '../infrastructure.dart';
 
 class GroceryShopRepository {

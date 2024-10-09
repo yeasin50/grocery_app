@@ -20,9 +20,9 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final provider = ShopProvider.of(context, listen: false);
+      final provider = ShopProvider.of(context);
       provider.onTabChange(PageName.cart);
-      price = provider.totalPrice;
+
       setState(() {});
     });
   }
@@ -53,18 +53,18 @@ class _CartPageState extends State<CartPage> {
           ),
         ),
         StreamBuilder(
-          stream: price,
-          initialData: 0.0,
+          stream: ShopProvider.of(context).totalPrice,
           builder: (context, snapshot) {
-            final totalPrice = snapshot.requireData;
+            final totalPrice = snapshot.data ?? 0;
             print("total stream $totalPrice");
             // if (totalPrice <= 0) return const SizedBox();
             return CartSummaryView(
+              key: ObjectKey(snapshot),
               deliveryPrice: 5,
               totalPrice: totalPrice,
             );
           },
-        )
+        ),
       ],
     );
   }

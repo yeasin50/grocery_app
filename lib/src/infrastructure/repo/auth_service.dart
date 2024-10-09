@@ -1,4 +1,4 @@
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
+import '../infrastructure.dart';
 
 class AuthService {
   const AuthService._(this.user);
