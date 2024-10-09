@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:grocery_app/src/presentation/_common/_common.dart';
 import '../../../app/app_theme.dart';
 import '../../../infrastructure/infrastructure.dart';
 
@@ -32,13 +33,13 @@ class ItemCardView extends StatelessWidget {
             Expanded(
               child: Stack(
                 children: [
-                  // Positioned.fill(
-                  //   child: Image.network(
-                  //     model.imageUrl,
-                  //     fit: BoxFit.cover,
-                  //     errorBuilder: (context, error, stackTrace) => Placeholder(),
-                  //   ),
-                  // ),
+                  Positioned.fill(
+                    child: Image.network(
+                      model.imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+                    ),
+                  ),
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../app/route_config.dart';
 import '../../infrastructure/infrastructure.dart';
+import '../_common/_common.dart';
 import '../_common/widgets/background_view.dart';
 import '../_common/widgets/item_counter.dart';
 import 'widgets/product_description.dart';
@@ -92,7 +93,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     child: Image.network(
                       widget.model.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => const Placeholder(),
+                      errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
                     ),
                   ),
                   const SizedBox(height: 12),
