@@ -12,19 +12,18 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const gap = SizedBox(height: 24);
-    final textTheme = Theme.of(context).textTheme;
     return AuthBackGroundWrapper(
       title: "Welcome back!",
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           gap,
-          AppTextField(
+          const AppTextField(
             hint: "Email",
             icon: Icon(Icons.email),
           ),
           gap,
-          AppTextField(
+          const AppTextField(
             hint: "Password",
             obscureText: true,
             icon: Icon(Icons.lock),
@@ -44,7 +43,9 @@ class SignInPage extends StatelessWidget {
             child: SizedBox(
               height: 56,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go(AppRoute.home);
+                },
                 child: const Text("Login"),
               ),
             ),

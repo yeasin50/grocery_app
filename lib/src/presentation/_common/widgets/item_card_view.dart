@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:grocery_app/src/presentation/_common/_common.dart';
+import '../_common.dart';
 import '../../../app/app_theme.dart';
 import '../../../infrastructure/infrastructure.dart';
 
@@ -62,13 +62,17 @@ class ItemCardView extends StatelessWidget {
                   model.type.title,
                   style: const TextStyle(color: AppTheme.primary),
                 ),
-                const Spacer(),
-                RatingBarIndicator(
-                  direction: Axis.horizontal,
-                  itemSize: 12,
-                  itemCount: 5,
-                  rating: model.rating,
-                  itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: RatingBarIndicator(
+                      direction: Axis.horizontal,
+                      itemSize: 12,
+                      itemCount: 5,
+                      rating: model.rating,
+                      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                    ),
+                  ),
                 )
               ],
             ),

@@ -50,7 +50,7 @@ class SignUpPage extends StatelessWidget {
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
-                  context.push(AppRoute.verification);
+                  context.push(AppRoute.otp);
                 },
                 child: const Text("Sign Up"),
               ),

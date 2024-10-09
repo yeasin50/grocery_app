@@ -56,8 +56,7 @@ class _CartPageState extends State<CartPage> {
           stream: ShopProvider.of(context).totalPrice,
           builder: (context, snapshot) {
             final totalPrice = snapshot.data ?? 0;
-            print("total stream $totalPrice");
-            // if (totalPrice <= 0) return const SizedBox();
+            if (totalPrice <= 0) return const SizedBox();
             return CartSummaryView(
               key: ObjectKey(snapshot),
               deliveryPrice: 5,

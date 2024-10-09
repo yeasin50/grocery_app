@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../app/grocery_app.dart';
 import '../../app/route_config.dart';
 
 import '../../infrastructure/infrastructure.dart';
@@ -37,77 +36,79 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return BackgroundView.two(
-      child: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                children: [
-                  AppBar(
-                    title: const LabelView(label: "Payment method"),
-                    centerTitle: true,
-                    iconTheme: const IconThemeData(color: Colors.black),
-                  ),
-                  const SizedBox(height: 24),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    alignment: WrapAlignment.start,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: PaymentMethodEnum.values
-                        .map(
-                          (e) => PaymentCardView(
-                            isSelected: selectedMethod == e,
-                            type: e,
-                            onTap: () {
-                              selectedMethod = e;
-                              setState(() {});
-                            },
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: 24),
-                  const AddPaymentButton(),
-                  const SizedBox(height: 24),
-                  for (final um in savedItems) //
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 12.0),
-                      child: UserSavedItemView(
-                        info: um,
-                        isSelected: selectedUserAccount == um,
-                        onTap: () {
-                          selectedUserAccount = um;
-                          setState(() {});
-                        },
-                      ),
+      child: SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  children: [
+                    AppBar(
+                      title: const LabelView(label: "Payment method"),
+                      centerTitle: true,
+                      iconTheme: const IconThemeData(color: Colors.black),
                     ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Total:\$${total.toStringAsFixed(1)}",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
+                    const SizedBox(height: 24),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      alignment: WrapAlignment.start,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: PaymentMethodEnum.values
+                          .map(
+                            (e) => PaymentCardView(
+                              isSelected: selectedMethod == e,
+                              type: e,
+                              onTap: () {
+                                selectedMethod = e;
+                                setState(() {});
+                              },
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    const SizedBox(height: 24),
+                    const AddPaymentButton(),
+                    const SizedBox(height: 24),
+                    for (final um in savedItems) //
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12.0),
+                        child: UserSavedItemView(
+                          info: um,
+                          isSelected: selectedUserAccount == um,
+                          onTap: () {
+                            selectedUserAccount = um;
+                            setState(() {});
+                          },
                         ),
-                  ),
-                  AppButton(
-                    label: "Pay Now",
-                    onTap: () async {
-                      await PaymentConfirmDialog.show(context);
-                      if (context.mounted) context.pop();
-                    },
-                  ),
-                ],
+                      ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Total:\$${total.toStringAsFixed(1)}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    AppButton(
+                      label: "Pay Now",
+                      onTap: () async {
+                        await PaymentConfirmDialog.show(context);
+                        if (context.mounted) context.pop();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

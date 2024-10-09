@@ -35,7 +35,7 @@ class NewPasswordPage extends StatelessWidget {
             child: AppButton.large(
               label: "Reset Password",
               onTap: () {
-                context.push(AppRoute.signIn);
+                context.push(AppRoute.home);
               },
             ),
           ),

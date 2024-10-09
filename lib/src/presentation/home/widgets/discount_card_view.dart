@@ -41,7 +41,6 @@ class DiscountCardView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 12),
                     Text(
                       "Flat $discount% off",
                       style: textTheme.bodyLarge?.copyWith(color: AppTheme.primary),
@@ -61,7 +60,6 @@ class DiscountCardView extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: AppButton(label: "view offer", onTap: onTap),
                     ),
-                    const SizedBox(height: 12),
                   ],
                 ),
               ),

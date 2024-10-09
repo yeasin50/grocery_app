@@ -10,6 +10,7 @@ import '../presentation/payment/add_payment_method_page.dart';
 import '../presentation/payment/payment_page.dart';
 import '../presentation/product_detail/producet_details_page.dart';
 import '../presentation/saved/saved_page.dart';
+import '../presentation/search/search_page.dart';
 
 export 'package:go_router/go_router.dart';
 
@@ -18,7 +19,6 @@ class AppRoute {
   static const String loginOption = "/landing_page/login_option";
   static const String signUp = "/landing_page/sign_up";
   static const String signIn = "/landing_page/sign_in";
-  static const String verification = "/landing_page/verification";
   static const String resetPassword = "/landing_page/reset_password";
   static const String otp = "/landing_page/reset_password/otp";
   static const String newPassword = "/landing_page/reset_password/new_password";
@@ -71,9 +71,9 @@ class AppRoute {
                 ),
                 GoRoute(
                   parentNavigatorKey: rootNavigatorKey,
-                  path: "search",
+                  path: 'search',
                   builder: (context, state) {
-                    return const Text("TODO");
+                    return const SearchPage();
                   },
                 )
               ],

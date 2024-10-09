@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../infrastructure/enums/page_name.dart';
 import '../../app/app_theme.dart';
 import '../../app/route_config.dart';
 import '../../infrastructure/infrastructure.dart';
 import '../_common/_common.dart';
-import '../_common/widgets/background_view.dart';
-import '../_common/widgets/item_counter.dart';
 import 'widgets/product_description.dart';
-
-import '../_common/widgets/app_button.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({
@@ -51,13 +48,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               customBorder: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
               ),
-              child: const Icon(
-                Icons.shopping_cart_rounded,
-                color: AppTheme.primary,
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.shopping_cart_rounded,
+                  color: AppTheme.primary,
+                ),
               ),
-              onTap: () {
-                context.go(AppRoute.cart);
-              },
+              onTap: () {},
             )
           ],
         ),
@@ -82,36 +80,38 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             ],
           ),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              sliver: SliverList.list(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 16 / 12,
-                    child: Image.network(
-                      widget.model.imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                sliver: SliverList.list(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 16 / 12,
+                      child: Image.network(
+                        widget.model.imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  Center(
-                    child: ItemCounter(
-                      initialValue: itemCount,
-                      onChanged: (v) {
-                        itemCount = v;
-                        setState(() {});
-                      },
+                    const SizedBox(height: 12),
+                    Center(
+                      child: ItemCounter(
+                        initialValue: itemCount,
+                        onChanged: (v) {
+                          itemCount = v;
+                          setState(() {});
+                        },
+                      ),
                     ),
-                  ),
-                  ProductDescription(model: widget.model),
-                  const SizedBox(height: 24),
-                ],
-              ),
-            )
-          ],
+                    ProductDescription(model: widget.model),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
