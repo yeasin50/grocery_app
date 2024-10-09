@@ -37,11 +37,12 @@ class _CartPageState extends State<CartPage> {
               SliverAppBar(
                 title: const LabelView(label: "My Cart"),
                 centerTitle: true,
+                leading: const SizedBox.shrink(),
                 actions: [
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.shopping_cart,
+                      Icons.history,
                       color: AppTheme.primary,
                     ),
                   ),

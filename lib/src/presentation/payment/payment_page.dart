@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grocery_app/src/app/grocery_app.dart';
+import 'package:grocery_app/src/app/route_config.dart';
 
 import '../../infrastructure/infrastructure.dart';
-import '../../infrastructure/models/user_payment_method.dart';
 import '../_common/_common.dart';
 import 'widgets/add_payment_button.dart';
 import 'widgets/payment_card_view.dart';
+import 'widgets/payment_confirm_dialog.dart';
 import 'widgets/saved_card_view.dart';
 
 class PaymentPage extends StatefulWidget {
@@ -94,7 +97,13 @@ class _PaymentPageState extends State<PaymentPage> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  AppButton(label: "Pay Now", onTap: () {}),
+                  AppButton(
+                    label: "Pay Now",
+                    onTap: () async {
+                      await PaymentConfirmDialog.show(context);
+                      if (context.mounted) context.pop();
+                    },
+                  ),
                 ],
               ),
             ),

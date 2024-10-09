@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grocery_app/src/app/grocery_app.dart';
+import 'package:grocery_app/src/app/route_config.dart';
+import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
+import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 
 import '../../_common/widgets/app_button.dart';
 
@@ -43,22 +48,22 @@ class CartSummaryView extends StatelessWidget {
           const SizedBox(height: 8),
           _buildPriceRow("Delivery fee", deliveryPrice),
           const SizedBox(height: 8),
-          _buildPriceRow("Total", totalPrice+deliveryPrice),
+          _buildPriceRow("Total", totalPrice + deliveryPrice),
           const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  fixedSize: const Size(120, 32),
-                  foregroundColor: Colors.black,
-                  textStyle: const TextStyle(fontSize: 16),
-                ),
-                child: const Text("Cancel"),
-              ),
-              AppButton(label: "Confirm Order", onTap: () {})
-            ],
+          Align(
+            alignment: Alignment.centerRight,
+            child: AppButton(
+              label: "Confirm Order",
+              onTap: () async {
+                await context.push(
+                  AppRoute.payment,
+                  extra: totalPrice + deliveryPrice,
+                );
+                if (context.mounted == false) return;
+                ShopProvider.of(context).onTabChange(PageName.home);
+                context.go(AppRoute.home);
+              },
+            ),
           )
         ],
       ),
