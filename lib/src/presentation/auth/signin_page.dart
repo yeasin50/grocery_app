@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grocery_app/src/app/route_config.dart';
-import 'package:grocery_app/src/presentation/_common/widgets/app_text_field.dart';
+import '../../app/route_config.dart';
+import '../_common/widgets/app_text_field.dart';
 
 import '../../app/app_theme.dart';
 import 'auth.dart';

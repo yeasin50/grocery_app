@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/presentation/_common/widgets/app_button.dart';
+import '../../../app/app_theme.dart';
+import '../../_common/widgets/app_button.dart';
 
 class DiscountCardView extends StatelessWidget {
   const DiscountCardView({

@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/app/route_config.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
+import 'app_theme.dart';
+import 'route_config.dart';
+import '../infrastructure/infrastructure.dart';
 
 class GroceryApp extends StatefulWidget {
   const GroceryApp({super.key});

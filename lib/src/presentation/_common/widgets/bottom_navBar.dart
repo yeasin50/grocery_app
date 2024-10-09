@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/app/route_config.dart';
-import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
+import '../../../app/app_theme.dart';
+import '../../../app/route_config.dart';
+import '../../../infrastructure/enums/page_name.dart';
+import '../../../infrastructure/infrastructure.dart';
 
 import '../../home/widgets/user_profile_header_view.dart';
 import 'background_view.dart';

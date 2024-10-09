@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
+import '../../../app/app_theme.dart';
 
 ///  create bubble for [BackgroundView]
 ///

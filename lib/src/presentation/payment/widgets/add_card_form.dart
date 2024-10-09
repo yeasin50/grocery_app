@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/app/route_config.dart';
-import 'package:grocery_app/src/presentation/_common/widgets/app_button.dart';
+import '../../../app/app_theme.dart';
+import '../../../app/route_config.dart';
+import '../../_common/widgets/app_button.dart';
 
 import 'payment_confirm_dialog.dart';
 

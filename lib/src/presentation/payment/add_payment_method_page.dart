@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/presentation/payment/widgets/add_card_form.dart';
+import '../../app/app_theme.dart';
+import 'widgets/add_card_form.dart';
 import '../../infrastructure/enums/payment_method_enum.dart';
 import '../_common/_common.dart';
 

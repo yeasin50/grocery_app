@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grocery_app/src/app/grocery_app.dart';
-import 'package:grocery_app/src/app/route_config.dart';
+import '../../app/grocery_app.dart';
+import '../../app/route_config.dart';
 
 import '../../infrastructure/infrastructure.dart';
 import '../_common/_common.dart';

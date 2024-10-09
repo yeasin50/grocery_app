@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/infrastructure/enums/product_filter.dart';
-import 'package:grocery_app/src/infrastructure/repo/app_repo.dart';
+import '../../../infrastructure/enums/product_filter.dart';
+import '../../../infrastructure/repo/app_repo.dart';
 
 class HomeFilterTabs extends StatefulWidget {
   const HomeFilterTabs({super.key});

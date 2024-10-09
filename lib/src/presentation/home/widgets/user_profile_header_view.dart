@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/src/app/app_theme.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
+import '../../../app/app_theme.dart';
+import '../../../infrastructure/infrastructure.dart';
 
 class UserProfileHeaderView extends StatelessWidget {
   const UserProfileHeaderView({

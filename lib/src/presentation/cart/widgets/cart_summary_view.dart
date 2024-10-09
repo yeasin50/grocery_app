@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:grocery_app/src/app/grocery_app.dart';
-import 'package:grocery_app/src/app/route_config.dart';
-import 'package:grocery_app/src/infrastructure/enums/page_name.dart';
-import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 
+import '../../../app/route_config.dart';
+import '../../../infrastructure/enums/page_name.dart';
+import '../../../infrastructure/infrastructure.dart';
 import '../../_common/widgets/app_button.dart';
 
 class CartSummaryView extends StatelessWidget {
