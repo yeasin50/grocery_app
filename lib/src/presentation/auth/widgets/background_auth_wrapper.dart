@@ -19,7 +19,7 @@ class AuthBackGroundWrapper extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        ColoredBox(color: Colors.white),
+        const ColoredBox(color: Colors.white),
         Positioned(
           left: 0,
           right: 0,
@@ -52,7 +52,8 @@ class AuthBackGroundWrapper extends StatelessWidget {
                 color: AppTheme.background,
               ),
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24)
+                    .copyWith(bottom: MediaQuery.viewInsetsOf(context).bottom),
                 child: Column(
                   children: [
                     gap,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/app/route_config.dart';
 import '../../../app/app_theme.dart';
 import '../../../infrastructure/infrastructure.dart';
 
@@ -32,15 +33,20 @@ class UserProfileHeaderView extends StatelessWidget {
               icon: const Icon(Icons.notification_important_rounded),
               color: AppTheme.primary,
             ),
-            Material(
-              shape: const CircleBorder(
-                side: BorderSide(color: AppTheme.primary),
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: Image.network(
-                model.avatar,
-                height: 48,
-                width: 48,
+            InkWell(
+              onTap: () {
+                context.push(AppRoute.author);
+              },
+              child: Material(
+                shape: const CircleBorder(
+                  side: BorderSide(color: AppTheme.primary),
+                ),
+                clipBehavior: Clip.hardEdge,
+                child: Image.network(
+                  model.avatar,
+                  height: 48,
+                  width: 48,
+                ),
               ),
             )
           ],

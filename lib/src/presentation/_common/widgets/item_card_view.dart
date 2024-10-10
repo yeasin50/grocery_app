@@ -22,7 +22,7 @@ class ItemCardView extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: const Color(0xFFF2ECEC),
+        color: AppTheme.cardColor,
       ),
       padding: const EdgeInsets.all(8),
       child: InkWell(
@@ -36,7 +36,7 @@ class ItemCardView extends StatelessWidget {
                   Positioned.fill(
                     child: Image.network(
                       model.imageUrl,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitHeight, //use cover
                       errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
                     ),
                   ),

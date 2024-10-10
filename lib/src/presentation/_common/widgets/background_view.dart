@@ -44,16 +44,18 @@ class BackgroundView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: Stack(
-        children: [
-          for (final b in bubble) b,
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-            child: child,
-          ),
-        ],
+    return SafeArea(
+      child: Material(
+        color: Colors.white,
+        child: Stack(
+          children: [
+            for (final b in bubble) b,
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+              child: child,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -20,9 +20,7 @@ class CartStreamSliverList extends StatelessWidget {
         }
         if (!snapshot.hasData) {
           return const SliverToBoxAdapter(
-            child: Center(
-              child: Text("A"),
-            ),
+            child: Center(),
           );
         }
         final pState = snapshot.data ?? ProductState.none;
@@ -34,8 +32,9 @@ class CartStreamSliverList extends StatelessWidget {
         }
         return SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          sliver: SliverList.builder(
+          sliver: SliverList.separated(
             itemCount: pState.filterData.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               return ItemCartView(
                 model: pState.filterData[index],

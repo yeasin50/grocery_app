@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grocery_app/src/presentation/about/about_page.dart';
 
 import '../infrastructure/infrastructure.dart';
 import '../presentation/_common/widgets/bottom_navBar.dart';
@@ -32,52 +33,46 @@ class AppRoute {
   static const String payment = "/payment";
   static const String createPayment = "/payment/create";
 
-  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+  static const String author = "/author";
+
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
   ///
   static GoRouter routerConfig(UserModel? user) {
     return GoRouter(
+      navigatorKey: _rootNavigatorKey,
       initialLocation: user != null ? home : startPage,
       routes: [
         ShellRoute(
-          navigatorKey: rootNavigatorKey,
+          navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
             final user = state.extra as UserModel? ?? UserModel.ui;
-
-            return AppBottomNavbar(
-              model: user,
-              child: child,
+            return SafeArea(
+              child: AppBottomNavbar(model: user, child: child),
             );
           },
           routes: [
             GoRoute(
-              parentNavigatorKey: rootNavigatorKey,
+              parentNavigatorKey: _shellNavigatorKey,
               path: home,
-              builder: (context, state) {
-                return const HomePage();
-              },
-              routes: [
-                GoRoute(
-                  parentNavigatorKey: rootNavigatorKey,
-                  path: "saved",
-                  builder: (context, state) => const SavedPage(),
-                ),
-                GoRoute(
-                  parentNavigatorKey: rootNavigatorKey,
-                  path: "cart",
-                  builder: (context, state) {
-                    return const CartPage();
-                  },
-                ),
-                GoRoute(
-                  parentNavigatorKey: rootNavigatorKey,
-                  path: 'search',
-                  builder: (context, state) {
-                    return const SearchPage();
-                  },
-                )
-              ],
+              pageBuilder: (context, state) => const NoTransitionPage(child: HomePage()),
             ),
+            GoRoute(
+              parentNavigatorKey: _shellNavigatorKey,
+              path: saved,
+              pageBuilder: (context, state) => const NoTransitionPage(child: SavedPage()),
+            ),
+            GoRoute(
+              parentNavigatorKey: _shellNavigatorKey,
+              path: cart,
+              pageBuilder: (context, state) => const NoTransitionPage(child: CartPage()),
+            ),
+            GoRoute(
+              parentNavigatorKey: _shellNavigatorKey,
+              path: search,
+              pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const SearchPage()),
+            )
           ],
         ),
         GoRoute(
@@ -140,6 +135,10 @@ class AppRoute {
               ),
             )
           ],
+        ),
+        GoRoute(
+          path: author,
+          builder: (context, state) => const AboutPage(),
         )
       ],
     );
