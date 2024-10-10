@@ -58,7 +58,7 @@ class _AboutPageState extends State<AboutPage> {
               const _BuildPersonTile(
                 name: "Md. Yeasin Sheikh",
                 avatarUrl: "https://avatars.githubusercontent.com/u/46500228?v=4",
-                profileUrl: 'https://www.behance.net/misbahasghar2',
+                profileUrl: 'https://www.linkedin.com/in/mdyeasinsheikh/',
                 email: "",
               )
             ],
@@ -87,9 +87,13 @@ class _BuildPersonTile extends StatelessWidget {
     return InkWell(
       onTap: () async {
         final uri = Uri.parse(profileUrl);
-        if (await canLaunchUrl(uri)) {
-          launchUrl(uri);
-        }
+
+        try {
+          launchUrl(
+            uri,
+            mode: LaunchMode.externalApplication,
+          );
+        } catch (_) {}
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
