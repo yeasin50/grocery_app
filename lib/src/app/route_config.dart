@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grocery_app/src/presentation/about/about_page.dart';
 
 import '../infrastructure/infrastructure.dart';
 import '../presentation/_common/widgets/bottom_navBar.dart';
@@ -31,6 +32,8 @@ class AppRoute {
 
   static const String payment = "/payment";
   static const String createPayment = "/payment/create";
+
+  static const String author = "/author";
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -132,6 +135,10 @@ class AppRoute {
               ),
             )
           ],
+        ),
+        GoRoute(
+          path: author,
+          builder: (context, state) => const AboutPage(),
         )
       ],
     );

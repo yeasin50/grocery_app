@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../app/app_theme.dart';
 import '../../app/route_config.dart';
-
 import '../_common/_common.dart';
 
 class LandingPage extends StatelessWidget {

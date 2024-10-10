@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../app/app_theme.dart';
 import '../../app/route_config.dart';
 import '../_common/widgets/app_text_field.dart';
-
-import '../../app/app_theme.dart';
 import 'auth.dart';
 
 class SignInPage extends StatelessWidget {

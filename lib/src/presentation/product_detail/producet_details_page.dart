@@ -82,6 +82,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         ),
         body: SafeArea(
           child: CustomScrollView(
+            clipBehavior: Clip.none,
             slivers: [
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
