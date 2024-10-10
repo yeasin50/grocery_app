@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:grocery_app/src/infrastructure/infrastructure.dart';
 
 import 'app_theme.dart';
 import 'route_config.dart';
@@ -22,7 +23,7 @@ class _GroceryAppState extends State<GroceryApp> {
       scrollBehavior: const ScrollBehavior().copyWith(
         dragDevices: PointerDeviceKind.values.toSet(),
       ),
-      routerConfig: AppRoute.routerConfig(null),
+      routerConfig: AppRoute.routerConfig(UserModel.ui),
     );
   }
 }

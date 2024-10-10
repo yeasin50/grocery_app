@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../infrastructure/enums/page_name.dart';
+
 import '../../infrastructure/infrastructure.dart';
-import '../_common/_common.dart';
+import '../_common/widgets/products_stream_sliver_list.dart';
 import 'widgets/discount_card_view.dart';
 import 'widgets/home_filter_tab.dart';
 
@@ -24,25 +24,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          sliver: SliverList.list(
-            children: [
-              const SizedBox(height: 24),
-              DiscountCardView(
-                discount: 50,
-                onTap: () async {},
-              ),
-              const SizedBox(height: 24),
-              const HomeFilterTabs(),
-              const SizedBox(height: 24),
-            ],
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            sliver: SliverList.list(
+              children: [
+                const SizedBox(height: 24),
+                DiscountCardView(
+                  discount: 50,
+                  onTap: () async {},
+                ),
+                const SizedBox(height: 24),
+                const HomeFilterTabs(),
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
-        ),
-        const ProductsStreamSliverList()
-      ],
+          const ProductsStreamSliverList()
+        ],
+      ),
     );
   }
 }

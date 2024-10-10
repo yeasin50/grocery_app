@@ -54,45 +54,45 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
               );
             }
             final repo = snapshot.requireData;
-            return SafeArea(
-              child: ShopProvider(
-                repo: repo,
-                child: Scaffold(
-                  bottomNavigationBar: BottomNavigationBar(
-                    onTap: (i) {
-                      if (i == 0) repo.onTabChange(PageName.values.elementAt(i));
+            return ShopProvider(
+              repo: repo,
+              child: Scaffold(
+                extendBody: true,
+                backgroundColor: Colors.transparent,
+                bottomNavigationBar: BottomNavigationBar(
+                  onTap: (i) {
+                    if (i == 0) repo.onTabChange(PageName.values.elementAt(i));
 
-                      onTap(i);
-                    },
-                    currentIndex: currentIndex,
-                    selectedItemColor: AppTheme.primary,
-                    unselectedItemColor: AppTheme.borderColor,
-                    type: BottomNavigationBarType.fixed,
-                    selectedLabelStyle: const TextStyle(color: AppTheme.primary),
-                    unselectedLabelStyle: const TextStyle(color: AppTheme.background),
-                    items: const [
-                      BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-                      BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-                      BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
-                      BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
-                    ],
-                  ),
-                  body: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
-                    child: Column(
-                      children: [
-                        if (currentIndex == 0) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24),
-                            child: UserProfileHeaderView(model: widget.model),
-                          ),
-                        ],
-                        const SizedBox(height: 24),
-                        Expanded(
-                          child: widget.child,
+                    onTap(i);
+                  },
+                  currentIndex: currentIndex,
+                  selectedItemColor: AppTheme.primary,
+                  unselectedItemColor: AppTheme.borderColor,
+                  type: BottomNavigationBarType.fixed,
+                  selectedLabelStyle: const TextStyle(color: AppTheme.primary),
+                  unselectedLabelStyle: const TextStyle(color: AppTheme.background),
+                  items: const [
+                    BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+                    BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+                    BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
+                    BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
+                  ],
+                ),
+                body: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Column(
+                    children: [
+                      if (currentIndex == 0) ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                          child: UserProfileHeaderView(model: widget.model),
                         ),
                       ],
-                    ),
+                      const SizedBox(height: 16),
+                      Expanded(
+                        child: widget.child,
+                      ),
+                    ],
                   ),
                 ),
               ),

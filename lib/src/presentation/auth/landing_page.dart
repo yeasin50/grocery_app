@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../app/app_theme.dart';
 import '../../app/route_config.dart';
 
 import '../_common/_common.dart';
-import '../_common/widgets/app_button.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -36,7 +34,7 @@ class LandingPage extends StatelessWidget {
               Positioned(
                 left: 24,
                 right: 24,
-                bottom: 32,
+                bottom: 64,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
