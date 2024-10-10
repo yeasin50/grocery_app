@@ -58,7 +58,15 @@ class DiscountCardView extends StatelessWidget {
                     const Spacer(),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: AppButton(label: "view offer", onTap: onTap),
+                      child: ElevatedButton(
+                        onPressed: onTap,
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          fixedSize: const Size.fromHeight(40),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child: const Text("View Offer"),
+                      ),
                     ),
                   ],
                 ),

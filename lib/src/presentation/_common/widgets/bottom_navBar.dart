@@ -57,7 +57,6 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
             return ShopProvider(
               repo: repo,
               child: Scaffold(
-                extendBody: true,
                 backgroundColor: Colors.transparent,
                 bottomNavigationBar: BottomNavigationBar(
                   onTap: (i) {
