@@ -27,12 +27,15 @@ class ItemCartView extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: AspectRatio(
-                aspectRatio: 16 / 12,
-                child: Image.network(
-                  model.imageUrl,
-                  fit: BoxFit.fitWidth,
-                  errorBuilder: (context, error, stackTrace) => const Placeholder(),
+              child: Hero(
+                tag: model.id,
+                child: AspectRatio(
+                  aspectRatio: 16 / 12,
+                  child: Image.network(
+                    model.imageUrl,
+                    fit: BoxFit.fitWidth,
+                    errorBuilder: (context, error, stackTrace) => const Placeholder(),
+                  ),
                 ),
               ),
             ),

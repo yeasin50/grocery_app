@@ -34,10 +34,13 @@ class ItemCardView extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned.fill(
-                    child: Image.network(
-                      model.imageUrl,
-                      fit: BoxFit.fitHeight, //use cover
-                      errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+                    child: Hero(
+                      tag: model.id,
+                      child: Image.network(
+                        model.imageUrl,
+                        fit: BoxFit.fitHeight, //use cover
+                        errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+                      ),
                     ),
                   ),
                   Align(

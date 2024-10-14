@@ -88,12 +88,15 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 sliver: SliverList.list(
                   children: [
-                    AspectRatio(
-                      aspectRatio: 16 / 12,
-                      child: Image.network(
-                        widget.model.imageUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+                    Hero(
+                      tag: widget.model.id,
+                      child: AspectRatio(
+                        aspectRatio: 16 / 12,
+                        child: Image.network(
+                          widget.model.imageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => const ImageErrorView(),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
